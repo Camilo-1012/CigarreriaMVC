@@ -1,0 +1,108 @@
+﻿@{
+    ViewData ["Title"] = "Cigarrería - Panel principal";
+    }
+
+<div class="container mt-4">
+
+    <!-- Encabezado -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="display-5">Sistema de Inventario - Cigarrería</h1>
+            <p class="lead">
+                Controla tus productos, movimientos de inventario y ventas desde un solo lugar.
+            </p>
+        </div>
+        <div class="col-md-4 text-md-end text-center mt-3">
+            <span class="badge bg-success fs-6">Versión 1.0</span>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Atajos principales -->
+    <div class="row mt-4">
+        <!-- Gestión de productos -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">
+                        <i class="fa-solid fa-boxes-stacked"></i> Productos
+                    </h4>
+                    <p class="card-text">
+                        Administra el catálogo de productos de la cigarrería: cigarrillos, bebidas,
+                        dulces, recargas y más.
+                    </p>
+                    <a asp-area="Admin" asp-controller="Producto" asp-action="Index"
+                       class="btn btn-primary w-100">
+                        Ir a productos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Movimientos de inventario -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="card-title text-success">
+                        <i class="fa-solid fa-arrows-rotate"></i> Movimientos de inventario
+                    </h4>
+                    <p class="card-text">
+                        Registra entradas y salidas de productos (compras, ventas, ajustes) y mantén
+                        actualizado el stock.
+                    </p>
+                    <a asp-area="Admin" asp-controller="MovimientosInventario" asp-action="Index"
+                       class="btn btn-success w-100">
+                        Ver movimientos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ventas / Reportes (futuro) -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="card-title text-warning">
+                        <i class="fa-solid fa-cash-register"></i> Ventas / Reportes
+                    </h4>
+                    <p class="card-text">
+                        Aquí podrás consultar ventas diarias y productos con poco stock.
+                        (Módulo en construcción).
+                    </p>
+                    <button class="btn btn-outline-secondary w-100" disabled>
+                        Próximamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección informativa -->
+    <div class="row mt-5">
+        <div class="col-md-6 mb-3">
+            <div class="alert alert-info">
+                <h5><i class="fa-solid fa-circle-info"></i> Sugerencia de uso</h5>
+                <ul class="mb-0">
+                    <li>Primero registra todos los <strong>productos</strong> que manejas.</li>
+                    <li>Luego crea <strong>entradas de inventario</strong> con las existencias iniciales.</li>
+                    <li>Cada venta o salida grande, regístrala como <strong>movimiento de salida</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="alert alert-warning">
+                <h5><i class="fa-solid fa-triangle-exclamation"></i> Recordatorio</h5>
+                <p class="mb-1">
+                    Mantener el inventario actualizado te ayuda a:
+                </p>
+                <ul class="mb-0">
+                    <li>Evitar quedarse sin productos clave (cigarrillos, cervezas, gaseosas).</li>
+                    <li>Detectar productos que casi no se mueven.</li>
+                    <li>Tener un control básico de ganancias por producto.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

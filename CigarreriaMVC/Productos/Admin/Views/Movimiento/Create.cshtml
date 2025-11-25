@@ -1,0 +1,97 @@
+﻿@model CigarreriaMVC.Models.MovimientoInventario
+
+@{
+    ViewData ["Title"] = "Nuevo movimiento de inventario";
+    }
+
+<br />
+<br />
+
+<h3 class="text-center">Registrar movimiento de inventario</h3>
+
+<form method="post" asp-action="Create">
+    <div class="row px-2 offset-1 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-10 offset-1 mt-4">
+            <!-- Producto -->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ProductoId"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="ProductoId" asp-items="ViewBag.ProductoId" class="form-control">
+                        <option value="">-- Seleccione un producto --</option>
+                    </select>
+                    <span asp-validation-for="ProductoId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- Tipo -->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Tipo"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Tipo" class="form-control">
+                        @foreach ( var tipo in ( List<string> ) ViewBag.Tipos )
+                            {
+                            <option value="@tipo">@tipo</option>
+                            }
+                    </select>
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- Cantidad -->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Cantidad"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Cantidad" class="form-control" placeholder="Cantidad" />
+                    <span asp-validation-for="Cantidad" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- Observación -->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Observacion"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Observacion" class="form-control" placeholder="Observación (opcional)" />
+                    <span asp-validation-for="Observacion" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-success form-control">
+                Guardar movimiento
+            </button>
+        </div>
+        &nbsp;
+        <div class="col">
+            <a asp-action="Index" class="btn btn-secondary form-control">
+                Volver a la lista
+            </a>
+        </div>
+    </div>
+</form>
+
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
