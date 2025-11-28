@@ -2,25 +2,50 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@{
+    // URL a donde quieres regresar después del logout
+    var returnUrl = Url.Action("Index", "Home", new { area = "" });
+    }
+
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Bienvenidos @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Cerrar Sesión</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Acceder</a>
-    </li>
-}
+    @if ( SignInManager.IsSignedIn ( User ) )
+        {
+        <li class="nav-item">
+            <a class="nav-link text-light"
+               asp-area=""
+               asp-controller="Home"
+               asp-action="Index">
+                Bienvenido @User.Identity?.Name!
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="d-inline"
+                  method="post"
+                  asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@returnUrl">
+                <button type="submit" class="nav-link btn btn-link text-light">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Cerrar sesión
+                </button>
+            </form>
+        </li>
+        }
+    else
+        {
+        <li class="nav-item">
+            <a class="nav-link text-light"
+               asp-area="Identity"
+               asp-page="/Account/Register">
+                Registrarse
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light"
+               asp-area="Identity"
+               asp-page="/Account/Login">
+                Acceder
+            </a>
+        </li>
+        }
 </ul>

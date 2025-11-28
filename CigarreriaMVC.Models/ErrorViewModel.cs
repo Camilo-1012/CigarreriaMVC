@@ -1,4 +1,4 @@
-namespace PaginaIst.Models
+namespace CigarreriaMVC.Models
     {
     public class ErrorViewModel
         {

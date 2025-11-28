@@ -4,22 +4,18 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-PaginaIst-0b9c2ce2-3e20-46de-9fff-97c64a4c1348</UserSecretsId>
+    <!-- Puedes cambiar el nombre del UserSecretsId si quieres, pero no afecta -->
+    <UserSecretsId>aspnet-CigarreriaMVC-USER-SECRETS</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Productos\Admin\Views\Contrasena\**" />
-    <Content Remove="Productos\Admin\Views\Contrasena\**" />
-    <EmbeddedResource Remove="Productos\Admin\Views\Contrasena\**" />
-    <None Remove="Productos\Admin\Views\Contrasena\**" />
+    <Content Include="Productos\Inicio\Controllers\HomeController.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\js\equipos.js" />
-    <Content Remove="wwwroot\js\mantenimiento.js" />
-    <Content Remove="wwwroot\js\paginasIst.js" />
-  </ItemGroup>
+  <!-- Si quieres, puedes quitar también estos ItemGroup de Remove.
+       No son obligatorios, pero no hacen daño. Yo los dejo por si estabas usando algo. -->
 
+  <!-- Referencias a paquetes NuGet necesarios -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
@@ -29,9 +25,14 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
+  <!-- Referencias a tus otros proyectos de la solución -->
   <ItemGroup>
     <ProjectReference Include="..\CigarreriaMVC.AccesoDatos\CigarreriaMVC.AccesoDatos.csproj" />
     <ProjectReference Include="..\CigarreriaMVC.Models\CigarreriaMVC.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Assent\" />
+    <Folder Include="wwwroot\Documentos\" />
   </ItemGroup>
 
 </Project>

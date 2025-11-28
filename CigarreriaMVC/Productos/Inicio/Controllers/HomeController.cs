@@ -1,39 +1,33 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using CigarreriaMVC.AccesoDatos.Data.Repository;
 using CigarreriaMVC.Models;
 
-namespace CigarreriaMVC.Controllers
+namespace CigarreriaMVC.Inicio.Controllers
     {
-    public class ProductosController : Controller
+    [Area ( "Inicio" )]
+    public class HomeController : Controller
         {
-        private readonly IContenedorTrabajo _ct;
-
-        public ProductosController ( IContenedorTrabajo contenedorTrabajo )
-            {
-            _ct = contenedorTrabajo;
-            }
-
+        // GET: /Inicio/Home/Index  (ruta por defecto si configuraste el área)
         public IActionResult Index ()
             {
-            var lista = _ct.Producto.GetAll();
-            return View ( lista );
+            // Simplemente devuelve la vista del panel principal
+            return View ( );
             }
 
-        public IActionResult Create ()
+        // GET: /Inicio/Home/Privacy
+        public IActionResult Privacy ()
             {
-            return View ( new Producto ( ) );
+            return View ( );
             }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create ( Producto producto )
+        // Manejador de errores estándar (opcional, pero recomendable)
+        [ResponseCache ( Duration = 0 , Location = ResponseCacheLocation.None , NoStore = true )]
+        public IActionResult Error ()
             {
-            if ( !ModelState.IsValid )
-                return View ( producto );
-
-            _ct.Producto.Add ( producto );
-            _ct.Save ( );
-            return RedirectToAction ( nameof ( Index ) );
+            return View ( new ErrorViewModel
+                {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+                } );
             }
         }
     }

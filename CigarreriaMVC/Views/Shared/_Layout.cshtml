@@ -1,128 +1,169 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PaginaIst</title>
+    <title>@ViewData ["Title"] - Sistema Cigarrería</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap5.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @*     <link rel="stylesheet" href="~/PaginaIst.styles.css" asp-append-version="true" /> *@
+    @* <link rel="stylesheet" href="~/CigarreriaMVC.styles.css" asp-append-version="true" /> *@
 
-    <!--Css todos-->
+    <!-- CSS plugins -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" asp-area="Usuario" asp-controller="Home" asp-action="Index">Intranet Ist</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Marca -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    Sistema Cigarrería
+                </a>
+
+                <!-- Botón hamburguesa -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarColor01">
+
+                <!-- Menú -->
+                <div class="collapse navbar-collapse" id="navbarPrincipal">
                     <ul class="navbar-nav me-auto">
+                        <!-- Inicio -->
                         <li class="nav-item">
-                            <a class="nav-link active" asp-area="Usuario" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
                                 Inicio
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
+
+                        <!-- Inventario -->
                         <li class="nav-item dropdown">
-                            @* IT *@
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">IT</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Inventario
+                            </a>
                             <div class="dropdown-menu">
-                                @* <a class="dropdown-item" asp-area="Admin" asp-controller="It" asp-action="Index">Crear Ticket</a> *@
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Mantenimientos" asp-action="Index">Mantenimientos</a>
-@*                                 <a class="dropdown-item" asp-area="IT2" asp-controller="Home" asp-action="Documentos">Documento_TI</a>
- *@                                <a class="dropdown-item" asp-area="Admin" asp-controller="Contrasena" asp-action="Index">Paginas_TI</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Producto" asp-action="Index">
+                                    <i class="fa-solid fa-boxes-stacked"></i> Productos
+                                </a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="MovimientosInventario" asp-action="Index">
+                                    <i class="fa-solid fa-arrows-rotate"></i> Movimientos de inventario
+                                </a>
                             </div>
                         </li>
-                        @* MANTEMIENTO *@
+
+                        @* Espacio para futuros módulos, por ejemplo Ventas/Reportes
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Reportes
+                            </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="EquiposIst" asp-controller="EquipoIT" asp-action="Index">Equipos</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Mantenimientos" asp-action="Index">Mantenimientos</a>
+                                <a class="dropdown-item" href="#">
+                                    Productos con bajo stock
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    Resumen diario
+                                </a>
                             </div>
                         </li>
-                        @* HSEQ *@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">HSEQ</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="Usuario" asp-controller="Recursos" asp-action="Index">HSEQ</a>
-                            </div>
-                        </li>
-                        @* TICKETS *@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tickets</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="It" asp-action="Index">Ticket TI</a>
-                                <a class="dropdown-item" asp-area="Ticket" asp-controller="Home" asp-action="Index">Ticket Mantenimiento</a>
-                            </div>
-                        </li>
+                        *@
                     </ul>
+
+                    <!-- Login / usuario (si sigues usando identidad) -->
+                    <partial name="_LoginPartial" />
                 </div>
-                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody ( )
         </main>
     </div>
 
-    <footer class="bg-primary text-light py-4">
+    <footer class="bg-primary text-light py-4 mt-auto">
         <div class="container">
             <div class="row">
-                <!-- Sección de enlaces rápidos -->
+                <!-- Enlaces rápidos -->
                 <div class="col-md-4">
-                    <h5 class="text-uppercase">Enlaces Rápidos</h5>
+                    <h5 class="text-uppercase">Navegación</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Inicio</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Mantenimiento</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">HSEQ</a></li>
-                        @*                         <li><a href="#" class="text-light text-decoration-none">Contacto</a></li>
- *@                    </ul>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="text-light text-decoration-none">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="Producto" asp-action="Index" class="text-light text-decoration-none">
+                                Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="MovimientosInventario" asp-action="Index" class="text-light text-decoration-none">
+                                Movimientos de inventario
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Sección de contacto -->
+                <!-- Información de la cigarrería -->
                 <div class="col-md-4">
-                    <h5 class="text-uppercase">Contacto</h5>
-                    <p>
-                        <strong>Intranet IST</strong><br>
-                        Dirección: Calle 93 #12-14, Bogotá, Colombia<br>
-                        Teléfono: (601) 3288830<br>
-                        Email: <a href="mailto:ist@ist-internacional.com.co" class="text-light text-decoration-none">ist@ist-internacional.com.co</a>
+                    <h5 class="text-uppercase">Cigarrería</h5>
+                    <p class="mb-1">
+                        <strong>Sistema de Inventario para Cigarrería</strong><br />
+                        Control de productos, stock y movimientos.
+                    </p>
+                    <p class="mb-0">
+                        Dirección: (edita aquí la dirección real)<br />
+                        Teléfono: (edita aquí el teléfono)
                     </p>
                 </div>
 
-                <!-- Sección de redes sociales -->
+                <!-- Redes sociales / contacto -->
                 <div class="col-md-4">
-                    <h5 class="text-uppercase">Síguenos</h5>
-                    <ul class="list-unstyled d-flex gap-3">
-                        <li><a href="https://www.youtube.com/watch?v=excf_eNw-BA" class="text-light text-decoration-none"><i class="fab fa-youtube"></i> Youtube</a></li>
-                        <li><a href="#" class="text-light text-decoration-none"><i class="fab fa-twitter"></i> X</a></li>
-                        <li><a href="#" class="text-light text-decoration-none"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <h5 class="text-uppercase">Contacto</h5>
+                    <p class="mb-1">
+                        Email: <a href="mailto:info@cigarreria.com" class="text-light text-decoration-none">
+                            info@cigarreria.com
+                        </a>
+                    </p>
+                    <ul class="list-unstyled d-flex gap-3 mb-0">
+                        <li>
+                            <a href="#" class="text-light text-decoration-none">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-light text-decoration-none">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <hr class="border-light">
+
+            <hr class="border-light" />
             <div class="text-center">
-                <p>&copy; 2024 - PaginaIst. Todos los derechos reservados. <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light text-decoration-none">Política de Privacidad</a></p>
+                <p class="mb-0">
+                    &copy; @DateTime.Now.Year - Sistema Cigarrería.
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light text-decoration-none">
+                        Política de Privacidad
+                    </a>
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- JS base -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--Js plugins-->
+    <!-- JS plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.2.1/jquery.serializejson.min.js"></script>
@@ -130,6 +171,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.min.js"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+@*     @RenderSection ( "Scripts" , false )
+ *@
 </body>
 </html>
+
